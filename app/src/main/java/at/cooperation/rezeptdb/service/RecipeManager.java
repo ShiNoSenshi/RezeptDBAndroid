@@ -4,18 +4,14 @@ import android.util.Base64;
 import android.util.JsonReader;
 import android.util.JsonToken;
 import android.util.Log;
-import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
-import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -28,7 +24,6 @@ import java.util.List;
 import java.util.Map;
 
 import at.cooperation.rezeptdb.BuildConfig;
-import at.cooperation.rezeptdb.R;
 import at.cooperation.rezeptdb.Recipes;
 import at.cooperation.rezeptdb.model.Image;
 import at.cooperation.rezeptdb.model.Recipe;
@@ -62,7 +57,7 @@ public class RecipeManager {
         }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String>  headers = new HashMap<>();
+                Map<String, String> headers = new HashMap<>();
                 String authString = BuildConfig.API_USER + ":" + BuildConfig.API_PASSWORD;
                 byte[] authEncBytes = Base64.encode(authString.getBytes(), 64);
                 String authStringEnc = new String(authEncBytes);
