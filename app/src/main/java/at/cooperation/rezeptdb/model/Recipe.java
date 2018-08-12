@@ -1,8 +1,9 @@
 package at.cooperation.rezeptdb.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Recipe {
+public class Recipe implements Serializable {
 
 
     private final long id;

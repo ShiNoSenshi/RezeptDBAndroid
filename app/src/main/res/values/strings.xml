@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">RezeptDB-Android</string>
+    <string name="recipeTitle">Title</string>
+    <string name="recipeImage">Image</string>
 </resources>

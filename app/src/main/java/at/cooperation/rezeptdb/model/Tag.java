@@ -1,6 +1,8 @@
 package at.cooperation.rezeptdb.model;
 
-public class Tag {
+import java.io.Serializable;
+
+public class Tag implements Serializable {
 
     private final long id;
     private final String label;
