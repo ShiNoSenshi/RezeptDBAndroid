@@ -2,12 +2,12 @@ package at.cooperation.rezeptdb;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.widget.ListView;
 
 import java.util.List;
 
+import at.cooperation.rezeptdb.android.RecipeArrayAdapter;
 import at.cooperation.rezeptdb.model.Recipe;
-import at.cooperation.rezeptdb.model.Tag;
 import at.cooperation.rezeptdb.service.RecipeManager;
 
 public class Recipes extends Activity {
@@ -24,23 +24,10 @@ public class Recipes extends Activity {
         recipeManager.loadRecipes(this);
     }
 
-
-    private void setText(String text) {
-        ((TextView) findViewById(R.id.text)).setText(text);
-    }
-
     public void setRecipes(List<Recipe> recipes) {
-        StringBuilder builder = new StringBuilder();
-        for (Recipe recipe : recipes) {
-            builder.append(recipe.getLabel()).append("\n").append(recipe.getEffort()).append(" min");
-            for (Tag tag : recipe.getTags()) {
-                builder.append(" | ").append(tag.getLabel());
-            }
-            if (!recipe.getImages().isEmpty()) {
-                builder.append("\n").append(recipe.getImages().get(0).getUrl());
-            }
-            builder.append("\n\n");
-        }
-        setText(builder.toString());
+        final ListView listview = findViewById(R.id.listview);
+        final RecipeArrayAdapter adapter =
+                new RecipeArrayAdapter(this, recipes.toArray(new Recipe[recipes.size()]));
+        listview.setAdapter(adapter);
     }
 }
