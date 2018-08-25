@@ -5,4 +5,6 @@
     <string name="recipeDescription">Beschreibung</string>
     <string name="recipeTags">tags</string>
     <string name="recipeEffort">Aufwand</string>
+    <string name="ingredientAmount">amount</string>
+    <string name="ingredientLabel">label</string>
 </resources>

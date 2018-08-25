@@ -4,13 +4,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
 
 import at.cooperation.rezeptdb.android.DownloadImageTask;
+import at.cooperation.rezeptdb.android.IngredientArrayAdapter;
 import at.cooperation.rezeptdb.model.Recipe;
 import at.cooperation.rezeptdb.model.Tag;
+import at.cooperation.rezeptdb.model.Ingredient;
 
 public class RecipeActivity extends Activity {
 
@@ -50,6 +52,12 @@ public class RecipeActivity extends Activity {
             builder.append(tag.getLabel());
         }
         tags.setText(builder.toString());
+
+
+        final ListView listview = findViewById(R.id.listview);
+        final IngredientArrayAdapter adapter =
+                new IngredientArrayAdapter(this, recipe.getIngredients().toArray(new Ingredient[recipe.getIngredients().size()]));
+        listview.setAdapter(adapter);
 
     }
 }

@@ -19,6 +19,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ import java.util.Map;
 import at.cooperation.rezeptdb.BuildConfig;
 import at.cooperation.rezeptdb.Recipes;
 import at.cooperation.rezeptdb.model.Image;
+import at.cooperation.rezeptdb.model.Ingredient;
 import at.cooperation.rezeptdb.model.Recipe;
 import at.cooperation.rezeptdb.model.Tag;
 
@@ -97,6 +99,7 @@ public class RecipeManager {
         int effort = 0;
         List<Tag> tags = null;
         List<Image> images = null;
+        List<Ingredient> ingredients = Arrays.asList(new Ingredient("4 TL", "Liebe"));
 
         reader.beginObject();
         while (reader.hasNext()) {
@@ -118,7 +121,7 @@ public class RecipeManager {
             }
         }
         reader.endObject();
-        return new Recipe(id, label, description, effort, tags, images);
+        return new Recipe(id, label, description, effort, tags, images, ingredients);
     }
 
     private List<Tag> readTagsArray(JsonReader reader) throws IOException {
