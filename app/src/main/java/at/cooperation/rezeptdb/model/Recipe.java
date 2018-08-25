@@ -12,17 +12,17 @@ public class Recipe implements Serializable {
     private final int effort;
     private final List<Tag> tags;
     private final List<Image> images;
-    private final List<Ingredient> ingredients;
+    private final List<IngredientGroup> ingredientGroups;
 
     public Recipe(long id, String label, String description, int effort, List<Tag> tags,
-                  List<Image> images, List<Ingredient> ingredients) {
+                  List<Image> images, List<IngredientGroup> ingredientGroups) {
         this.id = id;
         this.label = label;
         this.description = description;
         this.effort = effort;
         this.tags = tags;
         this.images = images;
-        this.ingredients = ingredients;
+        this.ingredientGroups = ingredientGroups;
     }
 
     public String getLabel() {
@@ -43,5 +43,5 @@ public class Recipe implements Serializable {
 
     public String getDescription() { return description; }
 
-    public List<Ingredient> getIngredients() { return ingredients; }
+    public List<IngredientGroup> getIngredientGroups() { return ingredientGroups; }
 }

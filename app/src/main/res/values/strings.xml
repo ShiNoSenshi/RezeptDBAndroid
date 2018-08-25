@@ -7,4 +7,5 @@
     <string name="recipeEffort">Aufwand</string>
     <string name="ingredientAmount">amount</string>
     <string name="ingredientLabel">label</string>
+    <string name="ingredientGroupLabel">Label</string>
 </resources>

@@ -1,6 +1,7 @@
 package at.cooperation.rezeptdb.android;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,12 +29,12 @@ public class IngredientArrayAdapter extends ArrayAdapter<Ingredient>{
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.ingredient_row, parent, false);
-        TextView amountView = rowView.findViewById(R.id.amount);
         TextView labelView = rowView.findViewById(R.id.label);
 
         Ingredient ingredient = values[position];
 
-        amountView.setText(ingredient.getAmount());
+        Log.e("test", "Aktuelle zutat ist: " + ingredient.getLabel());
+
         labelView.setText(ingredient.getLabel());
 
         return rowView;

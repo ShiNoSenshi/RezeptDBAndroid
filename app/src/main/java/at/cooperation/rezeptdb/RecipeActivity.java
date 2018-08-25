@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import at.cooperation.rezeptdb.android.DownloadImageTask;
 import at.cooperation.rezeptdb.android.IngredientArrayAdapter;
+import at.cooperation.rezeptdb.android.IngredientGroupArrayAdapter;
+import at.cooperation.rezeptdb.android.ListViewHeightCalculator;
+import at.cooperation.rezeptdb.model.IngredientGroup;
 import at.cooperation.rezeptdb.model.Recipe;
 import at.cooperation.rezeptdb.model.Tag;
 import at.cooperation.rezeptdb.model.Ingredient;
@@ -55,9 +58,10 @@ public class RecipeActivity extends Activity {
 
 
         final ListView listview = findViewById(R.id.listview);
-        final IngredientArrayAdapter adapter =
-                new IngredientArrayAdapter(this, recipe.getIngredients().toArray(new Ingredient[recipe.getIngredients().size()]));
+        final IngredientGroupArrayAdapter adapter =
+                new IngredientGroupArrayAdapter(this, recipe.getIngredientGroups().toArray(new IngredientGroup[recipe.getIngredientGroups().size()]));
         listview.setAdapter(adapter);
+        ListViewHeightCalculator.setListViewHeightBasedOnChildren(listview);
 
     }
 }
