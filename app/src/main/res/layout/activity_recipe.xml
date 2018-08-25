@@ -44,11 +44,11 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/textLabel"
-            android:layout_width="wrap_content"
+            android:id="@+id/description"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="true"
+            android:singleLine="false"
             android:text="@string/recipeDescription"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
     </LinearLayout>
 </ScrollView>

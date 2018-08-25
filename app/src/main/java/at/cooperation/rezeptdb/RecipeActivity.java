@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import at.cooperation.rezeptdb.android.DownloadImageTask;
 import at.cooperation.rezeptdb.model.Recipe;
 
@@ -33,5 +35,7 @@ public class RecipeActivity extends Activity {
 
         TextView label = findViewById(R.id.label);
         label.setText(recipe.getLabel());
+        TextView description = findViewById(R.id.description);
+        description.setText(recipe.getDescription());
     }
 }

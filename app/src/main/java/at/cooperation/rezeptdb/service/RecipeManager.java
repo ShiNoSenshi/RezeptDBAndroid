@@ -93,6 +93,7 @@ public class RecipeManager {
     private Recipe readMessage(JsonReader reader) throws IOException {
         long id = -1;
         String label = null;
+        String description = null;
         int effort = 0;
         List<Tag> tags = null;
         List<Image> images = null;
@@ -110,12 +111,14 @@ public class RecipeManager {
                 tags = readTagsArray(reader);
             } else if (name.equals("images") && reader.peek() != JsonToken.NULL) {
                 images = readImagesArray(reader);
+            } else if (name.equals("description")) {
+                description = reader.nextString();
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return new Recipe(id, label, effort, tags, images);
+        return new Recipe(id, label, description, effort, tags, images);
     }
 
     private List<Tag> readTagsArray(JsonReader reader) throws IOException {
