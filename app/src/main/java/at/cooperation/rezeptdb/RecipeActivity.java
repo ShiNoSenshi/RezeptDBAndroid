@@ -10,6 +10,7 @@ import org.w3c.dom.Text;
 
 import at.cooperation.rezeptdb.android.DownloadImageTask;
 import at.cooperation.rezeptdb.model.Recipe;
+import at.cooperation.rezeptdb.model.Tag;
 
 public class RecipeActivity extends Activity {
 
@@ -37,5 +38,18 @@ public class RecipeActivity extends Activity {
         label.setText(recipe.getLabel());
         TextView description = findViewById(R.id.description);
         description.setText(recipe.getDescription());
+
+        TextView effort = findViewById(R.id.effort);
+        effort.setText("Zubereitungszeit: " + recipe.getEffort() + " min");
+
+        TextView tags = findViewById(R.id.tags);
+        StringBuilder builder = new StringBuilder();
+        for (Tag tag: recipe.getTags()) {
+            if(builder.length() != 0)
+                builder.append("; ");
+            builder.append(tag.getLabel());
+        }
+        tags.setText(builder.toString());
+
     }
 }

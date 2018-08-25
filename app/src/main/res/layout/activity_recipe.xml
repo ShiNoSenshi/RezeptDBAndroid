@@ -44,6 +44,22 @@
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/effort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@string/recipeEffort"
+            android:textColor="@android:color/white"
+            android:background="@android:color/background_dark"/>
+        
+        <TextView
+            android:id="@+id/tags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/recipeTags"
+            android:singleLine="false" />
+
+        <TextView
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

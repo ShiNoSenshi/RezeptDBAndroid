@@ -3,4 +3,6 @@
     <string name="recipeTitle">Title</string>
     <string name="recipeImage">Image</string>
     <string name="recipeDescription">Beschreibung</string>
+    <string name="recipeTags">tags</string>
+    <string name="recipeEffort">Aufwand</string>
 </resources>
