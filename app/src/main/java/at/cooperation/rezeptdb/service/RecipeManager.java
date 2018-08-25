@@ -19,6 +19,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,8 @@ import java.util.Map;
 import at.cooperation.rezeptdb.BuildConfig;
 import at.cooperation.rezeptdb.Recipes;
 import at.cooperation.rezeptdb.model.Image;
+import at.cooperation.rezeptdb.model.Ingredient;
+import at.cooperation.rezeptdb.model.IngredientGroup;
 import at.cooperation.rezeptdb.model.Recipe;
 import at.cooperation.rezeptdb.model.Tag;
 
@@ -93,9 +96,11 @@ public class RecipeManager {
     private Recipe readMessage(JsonReader reader) throws IOException {
         long id = -1;
         String label = null;
+        String description = null;
         int effort = 0;
         List<Tag> tags = null;
         List<Image> images = null;
+        List<IngredientGroup> ingredientGroups = null;
 
         reader.beginObject();
         while (reader.hasNext()) {
@@ -110,12 +115,38 @@ public class RecipeManager {
                 tags = readTagsArray(reader);
             } else if (name.equals("images") && reader.peek() != JsonToken.NULL) {
                 images = readImagesArray(reader);
+            } else if (name.equals("ingredient_groups") && reader.peek() != JsonToken.NULL) {
+                ingredientGroups = readIngredientGroupsArray(reader);
+            } else if (name.equals("description")) {
+                description = reader.nextString();
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return new Recipe(id, label, effort, tags, images);
+        return new Recipe(id, label, description, effort, tags, images, ingredientGroups);
+    }
+
+    private List<IngredientGroup> readIngredientGroupsArray(JsonReader reader) throws IOException {
+        List<IngredientGroup> ingredientGroups = new ArrayList<>();
+
+        reader.beginArray();
+        while (reader.hasNext()) {
+            ingredientGroups.add(readIngredientGroups(reader));
+        }
+        reader.endArray();
+        return ingredientGroups;
+    }
+
+    private List<Ingredient> readIngredientsArray(JsonReader reader) throws IOException {
+        List<Ingredient> ingredients = new ArrayList<>();
+
+        reader.beginArray();
+        while (reader.hasNext()) {
+            ingredients.add(readIngredients(reader));
+        }
+        reader.endArray();
+        return ingredients;
     }
 
     private List<Tag> readTagsArray(JsonReader reader) throws IOException {
@@ -138,6 +169,43 @@ public class RecipeManager {
         }
         reader.endArray();
         return images;
+    }
+
+    private IngredientGroup readIngredientGroups(JsonReader reader) throws IOException {
+        IngredientGroup ingredientGroup = null;
+        String label = null;
+        List<Ingredient> ingredients = new ArrayList<>();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("label")) {
+                label = reader.nextString();
+            } else if (name.equals("ingredients") && reader.peek() != JsonToken.NULL) {
+                ingredients = readIngredientsArray(reader);
+            } else {
+                reader.skipValue();
+            }
+            ingredientGroup = new IngredientGroup(label, ingredients);
+        }
+        reader.endObject();
+        return ingredientGroup;
+    }
+
+    private Ingredient readIngredients(JsonReader reader) throws IOException {
+        Ingredient ingredient = null;
+        String label = null;
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("label")) {
+                label = reader.nextString();
+            } else {
+                reader.skipValue();
+            }
+            ingredient = new Ingredient(label);
+        }
+        reader.endObject();
+        return ingredient;
     }
 
     private Tag readTag(JsonReader reader) throws IOException {

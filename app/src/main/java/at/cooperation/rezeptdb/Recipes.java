@@ -7,6 +7,7 @@ import android.widget.ListView;
 import java.util.List;
 
 import at.cooperation.rezeptdb.android.RecipeArrayAdapter;
+import at.cooperation.rezeptdb.android.RecipeClickListener;
 import at.cooperation.rezeptdb.model.Recipe;
 import at.cooperation.rezeptdb.service.RecipeManager;
 
@@ -29,5 +30,6 @@ public class Recipes extends Activity {
         final RecipeArrayAdapter adapter =
                 new RecipeArrayAdapter(this, recipes.toArray(new Recipe[recipes.size()]));
         listview.setAdapter(adapter);
+        listview.setOnItemClickListener(new RecipeClickListener());
     }
 }

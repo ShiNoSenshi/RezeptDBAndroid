@@ -1,6 +1,8 @@
 package at.cooperation.rezeptdb.model;
 
-public class Image {
+import java.io.Serializable;
+
+public class Image implements Serializable {
 
     private final long id;
     private final String url;
