@@ -31,12 +31,8 @@ public class IngredientGroupArrayAdapter extends ArrayAdapter<IngredientGroup>{
         View rowView = inflater.inflate(R.layout.ingredient_group_row, parent, false);
         TextView labelView = rowView.findViewById(R.id.label);
 
-        Log.e("test", "Gruppen: " + values.length);
-
         IngredientGroup ingredientGroup = values[position];
         labelView.setText(ingredientGroup.getLabel());
-
-        Log.e("test", "Zutaten: " + ingredientGroup.getIngredients().size());
 
         final ListView listview = rowView.findViewById(R.id.ingredient_listview);
         final IngredientArrayAdapter adapter =

@@ -33,8 +33,6 @@ public class IngredientArrayAdapter extends ArrayAdapter<Ingredient>{
 
         Ingredient ingredient = values[position];
 
-        Log.e("test", "Aktuelle zutat ist: " + ingredient.getLabel());
-
         labelView.setText(ingredient.getLabel());
 
         return rowView;
