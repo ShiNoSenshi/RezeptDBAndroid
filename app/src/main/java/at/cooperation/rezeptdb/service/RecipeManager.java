@@ -19,13 +19,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import at.cooperation.rezeptdb.BuildConfig;
-import at.cooperation.rezeptdb.Recipes;
+import at.cooperation.rezeptdb.RecipesActivity;
 import at.cooperation.rezeptdb.model.Image;
 import at.cooperation.rezeptdb.model.Ingredient;
 import at.cooperation.rezeptdb.model.IngredientGroup;
@@ -34,9 +33,9 @@ import at.cooperation.rezeptdb.model.Tag;
 
 public class RecipeManager {
 
-    public void loadRecipes(final Recipes recipesView) {
+    public void loadRecipes(final RecipesActivity recipesView) {
         RequestQueue queue = Volley.newRequestQueue(recipesView);
-        String url = BuildConfig.BASE_URL + "recipesTest";
+        String url = BuildConfig.BASE_URL + "recipes";
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,

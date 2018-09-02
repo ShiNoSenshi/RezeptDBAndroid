@@ -11,7 +11,7 @@ import at.cooperation.rezeptdb.android.RecipeClickListener;
 import at.cooperation.rezeptdb.model.Recipe;
 import at.cooperation.rezeptdb.service.RecipeManager;
 
-public class Recipes extends Activity {
+public class RecipesActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
