@@ -27,7 +27,7 @@ import at.cooperation.rezeptdb.model.Recipe;
 public class ServerManager {
     public void loadTest(final SettingsCheckActivity activity) {
         RequestQueue queue = Volley.newRequestQueue(activity);
-        String url = BuildConfig.BASE_URL + "test";
+        String url = Settings.getInstance().getBaseUrl() + "test";
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -50,7 +50,7 @@ public class ServerManager {
 
     public void loadLogin(final SettingsCheckActivity activity) {
         RequestQueue queue = Volley.newRequestQueue(activity);
-        String url = BuildConfig.BASE_URL + "login";
+        String url = Settings.getInstance().getBaseUrl() + "login";
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -69,7 +69,7 @@ public class ServerManager {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
-                String authString = BuildConfig.API_USER + ":" + BuildConfig.API_PASSWORD;
+                String authString = Settings.getInstance().getAuthString();
                 byte[] authEncBytes = Base64.encode(authString.getBytes(), 64);
                 String authStringEnc = new String(authEncBytes);
                 headers.put("Authorization", "Basic " + authStringEnc);

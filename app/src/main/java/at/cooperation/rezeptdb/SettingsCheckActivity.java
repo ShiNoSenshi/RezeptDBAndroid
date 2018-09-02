@@ -25,13 +25,13 @@ public class SettingsCheckActivity extends Activity {
         if(available)
             manager.loadLogin(this);
         else
-            Log.e("settings", "Server not available!");
+            startActivity(new Intent(this, SettingsActivity.class));
     }
 
     public void setLoginSuccessful(boolean successful) {
         if(successful)
             startActivity(new Intent(this, RecipesActivity.class));
         else
-            Log.e("settings", "Login was not successful!");
+            startActivity(new Intent(this, SettingsActivity.class));
     }
 }
