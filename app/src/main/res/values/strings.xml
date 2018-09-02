@@ -5,7 +5,8 @@
     <string name="recipeDescription">Beschreibung</string>
     <string name="recipeTags">tags</string>
     <string name="recipeEffort">Aufwand</string>
-    <string name="ingredientAmount">amount</string>
     <string name="ingredientLabel">label</string>
     <string name="ingredientGroupLabel">Label</string>
+    <string name="title_activity_settings_check">SettingsCheckActivity</string>
+    <string name="connecting">Verbindung zum Server wird hergestellt....</string>
 </resources>

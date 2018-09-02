@@ -13,12 +13,19 @@
         android:theme="@style/AppTheme">
         <activity android:name=".RecipesActivity">
             <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".RecipeActivity" />
+        <activity
+            android:name=".SettingsCheckActivity"
+            android:label="@string/title_activity_settings_check">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RecipeActivity"></activity>
     </application>
 
 </manifest>
