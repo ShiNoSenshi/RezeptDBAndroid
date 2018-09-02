@@ -35,7 +35,7 @@ public class RecipeManager {
 
     public void loadRecipes(final RecipesActivity recipesView) {
         RequestQueue queue = Volley.newRequestQueue(recipesView);
-        String url = Settings.getInstance().getBaseUrl() + "recipes";
+        String url = Settings.getInstance(recipesView).getBaseUrl() + "recipes";
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -60,7 +60,7 @@ public class RecipeManager {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
-                String authString = Settings.getInstance().getAuthString();
+                String authString = Settings.getInstance(recipesView).getAuthString();
                 byte[] authEncBytes = Base64.encode(authString.getBytes(), 64);
                 String authStringEnc = new String(authEncBytes);
                 headers.put("Authorization", "Basic " + authStringEnc);

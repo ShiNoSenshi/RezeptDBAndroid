@@ -53,11 +53,11 @@ public class SettingsActivity extends Activity {
         setContentView(R.layout.activity_settings);
         // Set up the login form.
         mServerView = findViewById(R.id.url);
-        mServerView.setText(Settings.getInstance().getBaseUrl());
+        mServerView.setText(Settings.getInstance(this).getBaseUrl());
         mUsernameView = findViewById(R.id.username);
-        mUsernameView.setText(Settings.getInstance().getUsername());
+        mUsernameView.setText(Settings.getInstance(this).getUsername());
         mPasswordView = findViewById(R.id.password);
-        mPasswordView.setText(Settings.getInstance().getPassword());
+        mPasswordView.setText(Settings.getInstance(this).getPassword());
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -117,9 +117,9 @@ public class SettingsActivity extends Activity {
         if (cancel) {
             focusView.requestFocus();
         } else {
-            Settings.getInstance().setBaseUrl(url);
-            Settings.getInstance().setUsername(username);
-            Settings.getInstance().setPassword(password);
+            Settings.getInstance(this).setBaseUrl(url);
+            Settings.getInstance(this).setUsername(username);
+            Settings.getInstance(this).setPassword(password);
             startActivity(new Intent(this, SettingsCheckActivity.class));
         }
     }
