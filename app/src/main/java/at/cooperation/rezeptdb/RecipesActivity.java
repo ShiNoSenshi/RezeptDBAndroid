@@ -32,4 +32,9 @@ public class RecipesActivity extends Activity {
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(new RecipeClickListener());
     }
+
+    @Override
+    public void onBackPressed() {
+        //do nothing.
+    }
 }

@@ -34,4 +34,9 @@ public class SettingsCheckActivity extends Activity {
         else
             startActivity(new Intent(this, SettingsActivity.class));
     }
+
+    @Override
+    public void onBackPressed() {
+        //do nothing.
+    }
 }

@@ -124,5 +124,10 @@ public class SettingsActivity extends Activity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        //do nothing.
+    }
+
 }
 
