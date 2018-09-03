@@ -16,15 +16,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RecipesActivity">
+        <activity android:name=".RecipesActivity"
+            android:label="@string/title_activity_recipes">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".RecipeActivity" />
         <activity
-            android:name=".SettingsCheckActivity"
-            android:label="@string/title_activity_settings_check">
+            android:name=".SettingsCheckActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -7,7 +7,7 @@
     <string name="recipeEffort">Aufwand</string>
     <string name="ingredientLabel">label</string>
     <string name="ingredientGroupLabel">Label</string>
-    <string name="title_activity_settings_check">SettingsCheckActivity</string>
+    <string name="title_activity_recipes">Rezepte</string>
     <string name="connecting">Verbindung zum Server wird hergestellt....</string>
     <string name="title_activity_settings">Verbindung zum Server</string>
 
