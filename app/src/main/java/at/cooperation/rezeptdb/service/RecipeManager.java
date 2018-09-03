@@ -19,13 +19,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import at.cooperation.rezeptdb.BuildConfig;
-import at.cooperation.rezeptdb.Recipes;
+import at.cooperation.rezeptdb.RecipesActivity;
 import at.cooperation.rezeptdb.model.Image;
 import at.cooperation.rezeptdb.model.Ingredient;
 import at.cooperation.rezeptdb.model.IngredientGroup;
@@ -34,9 +33,9 @@ import at.cooperation.rezeptdb.model.Tag;
 
 public class RecipeManager {
 
-    public void loadRecipes(final Recipes recipesView) {
+    public void loadRecipes(final RecipesActivity recipesView) {
         RequestQueue queue = Volley.newRequestQueue(recipesView);
-        String url = BuildConfig.BASE_URL + "recipesTest";
+        String url = Settings.getInstance(recipesView).getBaseUrl() + "recipes";
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -61,7 +60,7 @@ public class RecipeManager {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
-                String authString = BuildConfig.API_USER + ":" + BuildConfig.API_PASSWORD;
+                String authString = Settings.getInstance(recipesView).getAuthString();
                 byte[] authEncBytes = Base64.encode(authString.getBytes(), 64);
                 String authStringEnc = new String(authEncBytes);
                 headers.put("Authorization", "Basic " + authStringEnc);

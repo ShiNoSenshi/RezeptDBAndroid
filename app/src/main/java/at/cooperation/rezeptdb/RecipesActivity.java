@@ -11,7 +11,7 @@ import at.cooperation.rezeptdb.android.RecipeClickListener;
 import at.cooperation.rezeptdb.model.Recipe;
 import at.cooperation.rezeptdb.service.RecipeManager;
 
-public class Recipes extends Activity {
+public class RecipesActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,5 +31,10 @@ public class Recipes extends Activity {
                 new RecipeArrayAdapter(this, recipes.toArray(new Recipe[recipes.size()]));
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(new RecipeClickListener());
+    }
+
+    @Override
+    public void onBackPressed() {
+        //do nothing.
     }
 }
