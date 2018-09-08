@@ -1,9 +1,7 @@
 package at.cooperation.rezeptdb.service;
 
-import android.app.Activity;
 import android.util.Base64;
 import android.util.Log;
-import android.view.View;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -13,16 +11,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import at.cooperation.rezeptdb.BuildConfig;
 import at.cooperation.rezeptdb.SettingsCheckActivity;
-import at.cooperation.rezeptdb.model.Recipe;
 
 public class ServerManager {
     public void loadTest(final SettingsCheckActivity activity) {

@@ -1,24 +1,19 @@
 package at.cooperation.rezeptdb.android;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import at.cooperation.rezeptdb.R;
-import at.cooperation.rezeptdb.model.Ingredient;
-import at.cooperation.rezeptdb.model.Recipe;
-import at.cooperation.rezeptdb.model.Tag;
 
-public class IngredientArrayAdapter extends ArrayAdapter<Ingredient>{
+public class IngredientArrayAdapter extends ArrayAdapter<String>{
     private final Context context;
-    private final Ingredient[] values;
+    private final String[] values;
 
-    public IngredientArrayAdapter(Context context, Ingredient[] values) {
+    public IngredientArrayAdapter(Context context, String[] values) {
         super(context, -1, values);
         this.context = context;
         this.values = values;
@@ -31,9 +26,9 @@ public class IngredientArrayAdapter extends ArrayAdapter<Ingredient>{
         View rowView = inflater.inflate(R.layout.ingredient_row, parent, false);
         TextView labelView = rowView.findViewById(R.id.label);
 
-        Ingredient ingredient = values[position];
+        String ingredient = values[position];
 
-        labelView.setText(ingredient.getLabel());
+        labelView.setText(ingredient);
 
         return rowView;
     }

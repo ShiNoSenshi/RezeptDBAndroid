@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import at.cooperation.rezeptdb.R;
 import at.cooperation.rezeptdb.model.Recipe;
-import at.cooperation.rezeptdb.model.Tag;
 
 public class RecipeArrayAdapter extends ArrayAdapter<Recipe>{
     private final Context context;
@@ -36,13 +35,12 @@ public class RecipeArrayAdapter extends ArrayAdapter<Recipe>{
         labelView.setText(recipe.getLabel());
         StringBuilder builder = new StringBuilder();
         builder.append(recipe.getEffort()).append(" min");
-        for (Tag tag : recipe.getTags()) {
-            builder.append(" | ").append(tag.getLabel());
+        for (String tag : recipe.getTags()) {
+            builder.append(" | ").append(tag);
         }
         descriptionView.setText(builder.toString());
-        if (!recipe.getImages().isEmpty()) {
-            new DownloadImageTask(imageView)
-                    .execute(recipe.getImages().get(0).getUrl());
+        if (recipe.getImage() != null) {
+            new DownloadImageTask(imageView).execute(recipe.getImage());
         }
 
         return rowView;

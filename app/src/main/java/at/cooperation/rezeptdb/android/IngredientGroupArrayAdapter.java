@@ -1,17 +1,14 @@
 package at.cooperation.rezeptdb.android;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import at.cooperation.rezeptdb.R;
-import at.cooperation.rezeptdb.model.Ingredient;
 import at.cooperation.rezeptdb.model.IngredientGroup;
 
 public class IngredientGroupArrayAdapter extends ArrayAdapter<IngredientGroup>{
@@ -36,7 +33,7 @@ public class IngredientGroupArrayAdapter extends ArrayAdapter<IngredientGroup>{
 
         final ListView listview = rowView.findViewById(R.id.ingredient_listview);
         final IngredientArrayAdapter adapter =
-                new IngredientArrayAdapter(context, ingredientGroup.getIngredients().toArray(new Ingredient[ingredientGroup.getIngredients().size()]));
+                new IngredientArrayAdapter(context, ingredientGroup.getIngredients().toArray(new String[ingredientGroup.getIngredients().size()]));
         listview.setAdapter(adapter);
         ListViewHeightCalculator.setListViewHeightBasedOnChildren(listview);
 

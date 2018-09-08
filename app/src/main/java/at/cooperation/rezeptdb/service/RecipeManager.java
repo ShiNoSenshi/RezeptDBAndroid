@@ -1,8 +1,6 @@
 package at.cooperation.rezeptdb.service;
 
 import android.util.Base64;
-import android.util.JsonReader;
-import android.util.JsonToken;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -12,30 +10,27 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import at.cooperation.rezeptdb.BuildConfig;
 import at.cooperation.rezeptdb.RecipesActivity;
-import at.cooperation.rezeptdb.model.Image;
-import at.cooperation.rezeptdb.model.Ingredient;
-import at.cooperation.rezeptdb.model.IngredientGroup;
 import at.cooperation.rezeptdb.model.Recipe;
-import at.cooperation.rezeptdb.model.Tag;
 
 public class RecipeManager {
 
     public void loadRecipes(final RecipesActivity recipesView) {
         RequestQueue queue = Volley.newRequestQueue(recipesView);
         String url = Settings.getInstance(recipesView).getBaseUrl() + "recipes";
+
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -73,15 +68,24 @@ public class RecipeManager {
     }
 
     private List<Recipe> readJsonStream(InputStream in) throws IOException {
-        JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
+        List<Recipe> recipes = new ArrayList<>();
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            recipes = Arrays.asList(mapper.readValue(in, Recipe[].class));
+        } catch (IOException e) {
+            Log.e("server_communication", "Error parsing JSON.", e);
+        }
+
+        /*JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
         try {
             return readMessagesArray(reader);
         } finally {
             reader.close();
-        }
+        }*/
+        return recipes;
     }
 
-    private List<Recipe> readMessagesArray(JsonReader reader) throws IOException {
+    /*private List<Recipe> readMessagesArray(JsonReader reader) throws IOException {
         List<Recipe> messages = new ArrayList<>();
 
         reader.beginArray();
@@ -245,5 +249,5 @@ public class RecipeManager {
         }
         reader.endObject();
         return image;
-    }
+    }*/
 }

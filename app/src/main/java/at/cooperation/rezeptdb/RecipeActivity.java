@@ -7,15 +7,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-
 import at.cooperation.rezeptdb.android.DownloadImageTask;
-import at.cooperation.rezeptdb.android.IngredientArrayAdapter;
 import at.cooperation.rezeptdb.android.IngredientGroupArrayAdapter;
 import at.cooperation.rezeptdb.android.ListViewHeightCalculator;
 import at.cooperation.rezeptdb.model.IngredientGroup;
 import at.cooperation.rezeptdb.model.Recipe;
-import at.cooperation.rezeptdb.model.Tag;
-import at.cooperation.rezeptdb.model.Ingredient;
 
 public class RecipeActivity extends Activity {
 
@@ -34,9 +30,9 @@ public class RecipeActivity extends Activity {
 
     private void loadContent() {
         ImageView imageView = findViewById(R.id.image);
-        if (!recipe.getImages().isEmpty()) {
+        if (recipe.getImage() != null) {
             new DownloadImageTask(imageView)
-                    .execute(recipe.getImages().get(0).getUrl());
+                    .execute(recipe.getImage());
         }
 
         TextView label = findViewById(R.id.label);
@@ -49,17 +45,17 @@ public class RecipeActivity extends Activity {
 
         TextView tags = findViewById(R.id.tags);
         StringBuilder builder = new StringBuilder();
-        for (Tag tag: recipe.getTags()) {
+        for (String tag: recipe.getTags()) {
             if(builder.length() != 0)
                 builder.append("; ");
-            builder.append(tag.getLabel());
+            builder.append(tag);
         }
         tags.setText(builder.toString());
 
 
         final ListView listview = findViewById(R.id.listview);
         final IngredientGroupArrayAdapter adapter =
-                new IngredientGroupArrayAdapter(this, recipe.getIngredientGroups().toArray(new IngredientGroup[recipe.getIngredientGroups().size()]));
+                new IngredientGroupArrayAdapter(this, recipe.getIngredient_groups().toArray(new IngredientGroup[recipe.getIngredient_groups().size()]));
         listview.setAdapter(adapter);
         ListViewHeightCalculator.setListViewHeightBasedOnChildren(listview);
 

@@ -4,14 +4,22 @@ import java.io.Serializable;
 import java.util.List;
 
 public class IngredientGroup implements Serializable {
-    private final String label;
-    private final List<Ingredient> ingredients;
+    private String label;
+    private List<String> ingredients;
 
-    public IngredientGroup(String label, List<Ingredient> ingredients) {
-        this.label = label;
-        this.ingredients = ingredients;
+    public String getLabel() {
+        return label;
     }
 
-    public List<Ingredient> getIngredients() { return ingredients; }
-    public String getLabel() { return label; }
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public List<String> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<String> ingredients) {
+        this.ingredients = ingredients;
+    }
 }

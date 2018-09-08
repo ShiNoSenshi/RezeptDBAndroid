@@ -1,9 +1,8 @@
 package at.cooperation.rezeptdb;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
-import android.util.Log;
 
 import at.cooperation.rezeptdb.service.ServerManager;
 
